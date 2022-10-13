@@ -10,6 +10,7 @@ class PersonList
     {
         this.personlist.Add(person);
     }
+
     public void FetchCollegianPersonList()
     {
         foreach(Person person in this.personlist)

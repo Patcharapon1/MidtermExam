@@ -7,6 +7,7 @@ class Person
     private string allergy;
     private string religion;
 
+
     public Person(string nameTitle,string name,string surname,string age,string allergy,string religion)
     {
         this.nameTitle = nameTitle;

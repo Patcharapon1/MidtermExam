@@ -168,6 +168,7 @@ class Program
         Console.Clear();
         PrintMenu();
     }
+    
     static void PrintMenuRegister()
     {
         Console.WriteLine("1.Collegian");
@@ -203,6 +204,11 @@ class Program
         Console.Clear();
         Console.WriteLine("Register collegian");
         Collegian collegian = new Collegian(InputNameTitle(),InputName(),InputSurname(),InputCollegianNumber(),InputAge(),InputAllergy(),InputReligion());
+        string IsAdmin = InputAdmin();
+        if(IsAdmin == "Y")
+        {
+            UserPass userpass = new UserPass(InputEmail(),InputPassword());
+        }
 
         Program.personlist.AddNewPerson(collegian);
     }
@@ -212,6 +218,7 @@ class Program
         Console.Clear();
         Console.WriteLine("Register student");
         Student student = new Student(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputGrade(),InputAllergy(),InputReligion(),InputSchool());
+        
 
         Program.personlist.AddNewPerson(student);
     }
@@ -219,9 +226,20 @@ class Program
     {
         Console.Clear();
         Console.WriteLine("Register Teacher");
-        Teacher teacher = new Teacher(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputRole(),InputAllergy(),InputReligion(),InputCar(),InputNumCar());
+        Teacher teacher = new Teacher(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputRole(),InputAllergy(),InputReligion());
+        string HaveCar = InputCar();
+        if(HaveCar == "Y")
+        {
+            InputNumCar();
+        }
+        string IsAdmin = InputAdmin();
+        if(IsAdmin == "Y")
+        {
+            UserPass userpass = new UserPass(InputEmail(),InputPassword());
+        }
 
         Program.personlist.AddNewPerson(teacher);
+
     }
 
     static void PreparePersonListWhenProgramIsLoad()
@@ -230,12 +248,17 @@ class Program
     }
     
 
-
-
     static string InputNameTitle()
     {
+
         Console.Write("Name Title : 1.นาย 2.นาง 3.นางสาว : ");
-        return Console.ReadLine();
+        int select = int.Parse(Console.ReadLine());
+        if (select == 1)
+            return "นาย";
+        else if (select == 2)
+            return "นาง";
+        else
+            return "นางสาว";
     }
     static string InputName()
     {
@@ -264,13 +287,27 @@ class Program
     }
     static string InputReligion()
     {
-        Console.Write("Religion : 1.พุทธ 2.คริสต์ 3.อิสลาม 4.อื่นๆ");
-        return Console.ReadLine();
+        Console.Write("Religion : 1.พุทธ 2.คริสต์ 3.อิสลาม 4.อื่นๆ : ");
+        int select = int.Parse(Console.ReadLine());
+        if (select == 1)
+            return "พุทธ";
+        else if (select == 2)
+            return "คริสต์";
+        else if (select == 3)
+            return "อิสลาม";
+        else 
+            return "อื่นๆ";
     }
     static string InputGrade()
     {
-        Console.Write("Grade : 1.ม.4 2.ม.5 3.ม.6 ");
-        return Console.ReadLine();
+        Console.Write("Grade : 1.ม.4 2.ม.5 3.ม.6 : ");
+        int select = int.Parse(Console.ReadLine());
+        if (select == 1)
+            return "ม.4";
+        else if (select == 2)
+            return "ม.5";
+        else 
+            return "ม.6";
     }
     static string InputSchool()
     {
@@ -279,7 +316,19 @@ class Program
     }
     static string InputRole()
     {
-        Console.Write("Role : 1.คณบดี 2.หัวหน้าภาควิชา 3.อาจารย์ประจำ");
+
+        Console.Write("Role : 1.คณบดี 2.หัวหน้าภาควิชา 3.อาจารย์ประจำ : ");
+        int select = int.Parse(Console.ReadLine());
+        if (select == 1)
+            return "คณบดี";
+        else if (select == 2)
+            return "หัวหน้าภาควิชา";
+        else 
+            return "อาจารย์ประจำ";
+    }
+    static string InputAdmin()
+    {
+        Console.Write("Are you an admin? (Y/N) : ");
         return Console.ReadLine();
     }
     static string InputEmail()
@@ -299,14 +348,9 @@ class Program
     }
     static string InputNumCar()
     {
-        if(InputCar()=="Y")
-        {
-            Console.Write("Number Car : ");
-            return Console.ReadLine();
-        }
-        else
-            return "";
+        Console.Write("Number Car : ");
+        return Console.ReadLine();
     }
-
+    
 
 }

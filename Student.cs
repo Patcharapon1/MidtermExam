@@ -1,4 +1,4 @@
-class Student : Person
+class Student : Person 
 {
     private string grade;
     private string school;
