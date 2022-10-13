@@ -1,4 +1,4 @@
-﻿enum Menu 
+﻿enum MenuLogout
 {
     RegisterUser = 1,
     ShowStatistic,
@@ -10,6 +10,14 @@ enum MenuRegis
     Student,
     Teacher
 }
+enum MenuLogin
+{
+    RegisterUser = 1,
+    Allcollegian,
+    Allstudent,
+    Allteacher,
+    Logout
+}
 class Program
 {
     static PersonList personlist;
@@ -20,38 +28,127 @@ class Program
     }
     static void PrintMenu()
     {
-        PrintListMenu();
-        InputMenuFromKeyboard();
+        PrintListMenuLogout();
+        InputMenuLogoutFromKeyboard();
     }
-    static void PrintListMenu()
+    static void PrintListMenuLogout()
     {
+        Console.Clear();
         Console.WriteLine("----- Menu idea camp 2022 -----");
         Console.WriteLine("1.Register Idea Camp 2022");
         Console.WriteLine("2.Show registration statistics Idea Camp 2022");
         Console.WriteLine("3.Login");
         Console.WriteLine("-------------------------------");
     }
-    static void InputMenuFromKeyboard()
+    static void InputMenuLogoutFromKeyboard()
     {
         Console.Write("Please select menu : ");
-        Menu menu = (Menu)(int.Parse(Console.ReadLine()));
+        MenuLogout menuLogout = (MenuLogout)(int.Parse(Console.ReadLine()));
 
-        PresentMenu(menu);
+        PresentMenuLogout(menuLogout);
     }
-    static void PresentMenu(Menu menu)
+    static void PresentMenuLogout(MenuLogout menuLogout)
     {
-        switch (menu)
+        switch (menuLogout)
         {
-            case Menu.RegisterUser:
+            case MenuLogout.RegisterUser:
                 InputRegisterUser();
                 break;
-            case Menu.ShowStatistic:
+            case MenuLogout.ShowStatistic:
                 ShowRegisStatistic();
                 break;
-                
+            case MenuLogout.Login:
+                ShowLogin();
+                break;
             default:
                 break;
         }
+        PrintMenu();
+
+    }
+    static void PrintListMenuLogin()
+    {
+        Console.Clear();
+        Console.WriteLine("----- Menu idea camp 2022 -----");
+        Console.WriteLine("1.Register Idea Camp 2022");
+        Console.WriteLine("2.All collegian register");
+        Console.WriteLine("3.All student register");
+        Console.WriteLine("4.All teacher register");
+        Console.WriteLine("5.Logout");
+        Console.WriteLine("-------------------------------");
+    }
+    static void InputMenuLoginFromKeyboard()
+    {
+        Console.Write("Please select menu : ");
+        MenuLogin menuLogin = (MenuLogin)(int.Parse(Console.ReadLine()));
+
+        PresentMenuLogin(menuLogin);
+    }
+    static void PresentMenuLogin(MenuLogin menuLogin)
+    {
+        switch (menuLogin)
+        {
+            case MenuLogin.RegisterUser:
+                InputRegisterUser();
+                break;
+            case MenuLogin.Allcollegian:
+                ShowAllcollegian();
+                break;
+            case MenuLogin.Allstudent:
+                ShowAllstudent();
+                break;
+            case MenuLogin.Allteacher:
+                ShowAllteacher();
+                break;
+            case MenuLogin.Logout:
+                PrintMenu();
+                break;
+            default:
+                break;
+        }
+        PrintListMenuLogin();
+        InputMenuLoginFromKeyboard();
+
+    }
+    static void ShowAllcollegian()
+    {
+        Console.Clear();
+        Console.WriteLine("-----Collegian Register-----");
+
+        Program.personlist.FetchCollegianPersonList();
+        Console.ReadLine();
+        PrintListMenuLogin();
+        InputMenuLoginFromKeyboard();
+    }
+    static void ShowAllstudent()
+    {
+        Console.Clear();
+        Console.WriteLine("-----Student Register-----");
+
+        Program.personlist.FetchStudentPersonList();
+        Console.ReadLine();
+        PrintListMenuLogin();
+        InputMenuLoginFromKeyboard();
+    }
+    static void ShowAllteacher()
+    {
+        Console.Clear();
+        Console.WriteLine("-----Teacher Register-----");
+
+        Program.personlist.FetchTeacherPersonList();
+        Console.ReadLine();
+        PrintListMenuLogin();
+        InputMenuLoginFromKeyboard();
+    }
+    static void ShowLogin()
+    {
+        Console.Clear();
+        InputEmail();
+        InputPassword();
+
+        PrintListMenuLogin();
+        InputMenuLoginFromKeyboard();
+
     }
 
 
@@ -69,9 +166,8 @@ class Program
 
         Console.ReadLine();
         Console.Clear();
-        BackToMainMenu();
+        PrintMenu();
     }
-
     static void PrintMenuRegister()
     {
         Console.WriteLine("1.Collegian");
@@ -109,8 +205,8 @@ class Program
         Collegian collegian = new Collegian(InputNameTitle(),InputName(),InputSurname(),InputCollegianNumber(),InputAge(),InputAllergy(),InputReligion());
 
         Program.personlist.AddNewPerson(collegian);
-        BackToMainMenu();
     }
+
     static void ShowInputStudent()
     {
         Console.Clear();
@@ -118,24 +214,16 @@ class Program
         Student student = new Student(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputGrade(),InputAllergy(),InputReligion(),InputSchool());
 
         Program.personlist.AddNewPerson(student);
-        BackToMainMenu();
     }
     static void ShowInputTeacher()
     {
         Console.Clear();
         Console.WriteLine("Register Teacher");
-        Teacher teacher = new Teacher(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputRole(),InputAllergy(),InputReligion());
+        Teacher teacher = new Teacher(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputRole(),InputAllergy(),InputReligion(),InputCar(),InputNumCar());
 
         Program.personlist.AddNewPerson(teacher);
-        BackToMainMenu();
     }
 
-    static void BackToMainMenu()
-    {
-        Console.Clear();
-        PrintListMenu();
-        InputMenuFromKeyboard();
-    }
     static void PreparePersonListWhenProgramIsLoad()
     {
         Program.personlist = new PersonList();
@@ -146,7 +234,7 @@ class Program
 
     static string InputNameTitle()
     {
-        Console.Write("Name Title : ");
+        Console.Write("Name Title : 1.นาย 2.นาง 3.นางสาว : ");
         return Console.ReadLine();
     }
     static string InputName()
@@ -176,12 +264,12 @@ class Program
     }
     static string InputReligion()
     {
-        Console.Write("Religion : ");
+        Console.Write("Religion : 1.พุทธ 2.คริสต์ 3.อิสลาม 4.อื่นๆ");
         return Console.ReadLine();
     }
     static string InputGrade()
     {
-        Console.Write("Grade : ");
+        Console.Write("Grade : 1.ม.4 2.ม.5 3.ม.6 ");
         return Console.ReadLine();
     }
     static string InputSchool()
@@ -191,8 +279,34 @@ class Program
     }
     static string InputRole()
     {
-        Console.Write("Role : ");
+        Console.Write("Role : 1.คณบดี 2.หัวหน้าภาควิชา 3.อาจารย์ประจำ");
         return Console.ReadLine();
     }
+    static string InputEmail()
+    {
+        Console.Write("E-mail : ");
+        return Console.ReadLine();
+    }
+    static string InputPassword()
+    {
+        Console.Write("Password : ");
+        return Console.ReadLine();
+    }
+    static string InputCar()
+    {
+        Console.Write("Have car?(Y/N) : ");
+        return Console.ReadLine();
+    }
+    static string InputNumCar()
+    {
+        if(InputCar()=="Y")
+        {
+            Console.Write("Number Car : ");
+            return Console.ReadLine();
+        }
+        else
+            return "";
+    }
+
 
 }

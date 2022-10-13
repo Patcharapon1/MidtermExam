@@ -10,6 +10,36 @@ class PersonList
     {
         this.personlist.Add(person);
     }
+    public void FetchCollegianPersonList()
+    {
+        foreach(Person person in this.personlist)
+        {
+            if (person is Collegian)
+            {
+                Console.WriteLine("Name {0} {1}  {2}",person.GetNameTitle(),person.GetName(),person.GetSurname());
+            }
+        }
+    }
+    public void FetchStudentPersonList()
+    {
+        foreach(Person person in this.personlist)
+        {
+            if (person is Student)
+            {
+                Console.WriteLine("Name {0} {1}  {2}",person.GetNameTitle(),person.GetName(),person.GetSurname());
+            }
+        }
+    }
+    public void FetchTeacherPersonList()
+    {
+        foreach(Person person in this.personlist)
+        {
+            if (person is Teacher)
+            {
+                Console.WriteLine("Name {0} {1}  {2}",person.GetNameTitle(),person.GetName(),person.GetSurname());
+            }
+        }
+    }
     public void FetchPersonList()
     {
         int countTeacher = 0;
