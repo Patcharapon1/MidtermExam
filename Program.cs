@@ -45,6 +45,7 @@ class Program
             case Menu.RegisterUser:
                 InputRegisterUser();
                 break;
+                
             default:
                 break;
         }
@@ -78,6 +79,12 @@ class Program
             case MenuRegis.Collegian:
                 ShowInputCollegian();
                 break;
+            case MenuRegis.Student:
+                ShowInputStudent();
+                break;
+            case MenuRegis.Teacher:
+                ShowInputTeacher();
+                break;
             default:
                 break;
         }
@@ -91,6 +98,25 @@ class Program
         Program.personlist.AddNewPerson(collegian);
         BackToMainMenu();
     }
+    static void ShowInputStudent()
+    {
+        Console.Clear();
+        Console.WriteLine("Register student");
+        Student student = new Student(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputGrade(),InputAllergy(),InputReligion(),InputSchool());
+
+        Program.personlist.AddNewPerson(student);
+        BackToMainMenu();
+    }
+    static void ShowInputTeacher()
+    {
+        Console.Clear();
+        Console.WriteLine("Register Teacher");
+        Teacher teacher = new Teacher(InputNameTitle(),InputName(),InputSurname(),InputAge(),InputRole(),InputAllergy(),InputReligion());
+
+        Program.personlist.AddNewPerson(teacher);
+        BackToMainMenu();
+    }
+
     static void BackToMainMenu()
     {
         Console.Clear();
@@ -138,6 +164,21 @@ class Program
     static string InputReligion()
     {
         Console.Write("Religion : ");
+        return Console.ReadLine();
+    }
+    static string InputGrade()
+    {
+        Console.Write("Grade : ");
+        return Console.ReadLine();
+    }
+    static string InputSchool()
+    {
+        Console.Write("School : ");
+        return Console.ReadLine();
+    }
+    static string InputRole()
+    {
+        Console.Write("Role : ");
         return Console.ReadLine();
     }
 
