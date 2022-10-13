@@ -1,7 +1,7 @@
 ﻿enum Menu 
 {
     RegisterUser = 1,
-    ShowRegisterUser,
+    ShowStatistic,
     Login
 }
 enum MenuRegis
@@ -26,8 +26,8 @@ class Program
     static void PrintListMenu()
     {
         Console.WriteLine("----- Menu idea camp 2022 -----");
-        Console.WriteLine("1.Register idea camp 2022");
-        Console.WriteLine("2.Show Register idea camp 2022");
+        Console.WriteLine("1.Register Idea Camp 2022");
+        Console.WriteLine("2.Show registration statistics Idea Camp 2022");
         Console.WriteLine("3.Login");
         Console.WriteLine("-------------------------------");
     }
@@ -45,6 +45,9 @@ class Program
             case Menu.RegisterUser:
                 InputRegisterUser();
                 break;
+            case Menu.ShowStatistic:
+                ShowRegisStatistic();
+                break;
                 
             default:
                 break;
@@ -59,6 +62,16 @@ class Program
         InputMenuRegister();
 
     }
+    static void ShowRegisStatistic()
+    {
+        Console.Clear();
+        Program.personlist.FetchPersonList();
+
+        Console.ReadLine();
+        Console.Clear();
+        BackToMainMenu();
+    }
+
     static void PrintMenuRegister()
     {
         Console.WriteLine("1.Collegian");
