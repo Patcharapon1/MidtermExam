@@ -143,8 +143,7 @@ class Program
     static void ShowLogin()
     {
         Console.Clear();
-        InputEmail();
-        InputPassword();
+        UserPass userpass = new UserPass(InputEmail(),InputPassword());
 
         PrintListMenuLogin();
         InputMenuLoginFromKeyboard();
