@@ -26,7 +26,7 @@ class PersonList
                 countTeacher += 0;
             }
         }
-        Console.WriteLine("All Teacher : {0}",countTeacher);
+        Console.WriteLine("All Teacher : {0} ",countTeacher);
     
         foreach(Person person in this.personlist)
         {
@@ -39,7 +39,7 @@ class PersonList
                 countStudent += 0;
             }
         }
-        Console.WriteLine("All Student : {0}",countStudent);
+        Console.WriteLine("All Student : {0} ",countStudent);
         foreach(Person person in this.personlist)
         {
             if(person is Collegian)
@@ -51,7 +51,7 @@ class PersonList
                 countCollegian += 0;
             }
         }
-        Console.WriteLine("All Collegian : {0}",countCollegian);
+        Console.WriteLine("All Collegian : {0} ",countCollegian);
     }
 
 }
