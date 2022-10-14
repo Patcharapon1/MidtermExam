@@ -20,18 +20,18 @@ enum MenuLogin
 }
 class Program
 {
-    static PersonList personlist;
-    static void Main(string[] args)
+    public static PersonList personlist;
+    public static void Main(string[] args)
     {
         PreparePersonListWhenProgramIsLoad();
         PrintMenu();
     }
-    static void PrintMenu()
+    public static void PrintMenu()
     {
         PrintListMenuLogout();
         InputMenuLogoutFromKeyboard();
     }
-    static void PrintListMenuLogout()
+    public static void PrintListMenuLogout()
     {
         Console.Clear();
         Console.WriteLine("----- Menu idea camp 2022 -----");
@@ -40,14 +40,14 @@ class Program
         Console.WriteLine("3.Login");
         Console.WriteLine("-------------------------------");
     }
-    static void InputMenuLogoutFromKeyboard()
+    public static void InputMenuLogoutFromKeyboard()
     {
         Console.Write("Please select menu : ");
         MenuLogout menuLogout = (MenuLogout)(int.Parse(Console.ReadLine()));
 
         PresentMenuLogout(menuLogout);
     }
-    static void PresentMenuLogout(MenuLogout menuLogout)
+    public static void PresentMenuLogout(MenuLogout menuLogout)
     {
         switch (menuLogout)
         {
@@ -66,7 +66,7 @@ class Program
         PrintMenu();
 
     }
-    static void PrintListMenuLogin()
+    public static void PrintListMenuLogin()
     {
         Console.Clear();
         Console.WriteLine("----- Menu idea camp 2022 -----");
@@ -77,14 +77,14 @@ class Program
         Console.WriteLine("5.Logout");
         Console.WriteLine("-------------------------------");
     }
-    static void InputMenuLoginFromKeyboard()
+    public static void InputMenuLoginFromKeyboard()
     {
         Console.Write("Please select menu : ");
         MenuLogin menuLogin = (MenuLogin)(int.Parse(Console.ReadLine()));
 
         PresentMenuLogin(menuLogin);
     }
-    static void PresentMenuLogin(MenuLogin menuLogin)
+    public static void PresentMenuLogin(MenuLogin menuLogin)
     {
         switch (menuLogin)
         {
@@ -110,37 +110,40 @@ class Program
         InputMenuLoginFromKeyboard();
 
     }
-    static void ShowAllcollegian()
+    public static void ShowAllcollegian()
     {
         Console.Clear();
         Console.WriteLine("-----Collegian Register-----");
 
         Program.personlist.FetchCollegianPersonList();
+        Console.Write("Press enter button to continue.");
         Console.ReadLine();
         PrintListMenuLogin();
         InputMenuLoginFromKeyboard();
     }
-    static void ShowAllstudent()
+    public static void ShowAllstudent()
     {
         Console.Clear();
         Console.WriteLine("-----Student Register-----");
 
         Program.personlist.FetchStudentPersonList();
+        Console.Write("Press enter button to continue.");
         Console.ReadLine();
         PrintListMenuLogin();
         InputMenuLoginFromKeyboard();
     }
-    static void ShowAllteacher()
+    public static void ShowAllteacher()
     {
         Console.Clear();
         Console.WriteLine("-----Teacher Register-----");
 
         Program.personlist.FetchTeacherPersonList();
+        Console.Write("Press enter button to continue.");
         Console.ReadLine();
         PrintListMenuLogin();
         InputMenuLoginFromKeyboard();
     }
-    static void ShowLogin()
+    public static void ShowLogin()
     {
         Console.Clear();
         UserPass userpass = new UserPass(InputEmail(),InputPassword());
@@ -151,37 +154,38 @@ class Program
     }
 
 
-    static void InputRegisterUser()
+    public static void InputRegisterUser()
     {
         Console.Clear();
         PrintMenuRegister();
         InputMenuRegister();
 
     }
-    static void ShowRegisStatistic()
+    public static void ShowRegisStatistic()
     {
         Console.Clear();
         Program.personlist.FetchPersonList();
-
+        
+        Console.Write("Press enter button to continue.");
         Console.ReadLine();
         Console.Clear();
         PrintMenu();
     }
     
-    static void PrintMenuRegister()
+    public static void PrintMenuRegister()
     {
         Console.WriteLine("1.Collegian");
         Console.WriteLine("2.Student");
         Console.WriteLine("3.Teacher");
     }
-    static void InputMenuRegister()
+    public static void InputMenuRegister()
     {
         Console.Write("Please select group : ");
         MenuRegis menuregis = (MenuRegis)(int.Parse(Console.ReadLine()));
 
         PresentMenuRegister(menuregis);
     }
-    static void PresentMenuRegister(MenuRegis menuregis)
+    public static void PresentMenuRegister(MenuRegis menuregis)
     {
         switch(menuregis)
         {
@@ -198,7 +202,7 @@ class Program
                 break;
         }
     }
-    static void ShowInputCollegian()
+    public static void ShowInputCollegian()
     {
         Console.Clear();
         Console.WriteLine("Register collegian");
@@ -212,7 +216,7 @@ class Program
         Program.personlist.AddNewPerson(collegian);
     }
 
-    static void ShowInputStudent()
+    public static void ShowInputStudent()
     {
         Console.Clear();
         Console.WriteLine("Register student");
@@ -221,7 +225,7 @@ class Program
 
         Program.personlist.AddNewPerson(student);
     }
-    static void ShowInputTeacher()
+    public static void ShowInputTeacher()
     {
         Console.Clear();
         Console.WriteLine("Register Teacher");
@@ -241,111 +245,110 @@ class Program
 
     }
 
-    static void PreparePersonListWhenProgramIsLoad()
+    public static void PreparePersonListWhenProgramIsLoad()
     {
         Program.personlist = new PersonList();
     }
     
 
-    static string InputNameTitle()
+    public static string InputNameTitle()
     {
-
-        Console.Write("Name Title : 1.นาย 2.นาง 3.นางสาว : ");
+        Console.Write("Name Title : 1.Mr. 2.Mrs. 3.Miss : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
-            return "นาย";
+            return "Mr.";
         else if (select == 2)
-            return "นาง";
+            return "Mrs.";
         else
-            return "นางสาว";
+            return "Miss";
     }
-    static string InputName()
+    public static string InputName()
     {
         Console.Write("Name : ");
         return Console.ReadLine();
     }
-    static string InputSurname()
+    public static string InputSurname()
     {
         Console.Write("Surname : ");
         return Console.ReadLine();
     }
-    static string InputCollegianNumber()
+    public static string InputCollegianNumber()
     {
         Console.Write("Collegian Number : ");
         return Console.ReadLine();
     }
-    static string InputAge()
+    public static string InputAge()
     {
         Console.Write("Age : ");
         return Console.ReadLine();
     }
-    static string InputAllergy()
+    public static string InputAllergy()
     {
         Console.Write("Allergy : ");
         return Console.ReadLine();
     }
-    static string InputReligion()
+    public static string InputReligion()
     {
-        Console.Write("Religion : 1.พุทธ 2.คริสต์ 3.อิสลาม 4.อื่นๆ : ");
+        Console.Write("Religion : 1.Buddhism 2.Christianity 3.Islam 4.Other : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
-            return "พุทธ";
+            return "Buddhism";
         else if (select == 2)
-            return "คริสต์";
+            return "Christianity";
         else if (select == 3)
-            return "อิสลาม";
+            return "Islam";
         else 
-            return "อื่นๆ";
+            return "Other";
     }
-    static string InputGrade()
+    public static string InputGrade()
     {
-        Console.Write("Grade : 1.ม.4 2.ม.5 3.ม.6 : ");
+        Console.Write("Grade : 1.M.4 2.M.5 3.M.6 : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
-            return "ม.4";
+            return "M.4";
         else if (select == 2)
-            return "ม.5";
+            return "M.5";
         else 
-            return "ม.6";
+            return "M.6";
     }
-    static string InputSchool()
+    public static string InputSchool()
     {
         Console.Write("School : ");
         return Console.ReadLine();
     }
-    static string InputRole()
+    public static string InputRole()
     {
 
-        Console.Write("Role : 1.คณบดี 2.หัวหน้าภาควิชา 3.อาจารย์ประจำ : ");
+        Console.Write("Role : 1.Dean 2.Head of department 3.Full-time teacher : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
-            return "คณบดี";
+            return "Dean";
         else if (select == 2)
-            return "หัวหน้าภาควิชา";
+            return "Head of department";
         else 
-            return "อาจารย์ประจำ";
+            return "Full-time teacher";
     }
-    static string InputAdmin()
+    public static string InputAdmin()
     {
         Console.Write("Are you an admin? (Y/N) : ");
         return Console.ReadLine();
     }
-    static string InputEmail()
+    public static string InputEmail()
     {
         Console.Write("E-mail : ");
         return Console.ReadLine();
     }
-    static string InputPassword()
+    public static string InputPassword()
     {
         Console.Write("Password : ");
         return Console.ReadLine();
     }
-    static string InputCar()
+    public static string InputCar()
     {
         Console.Write("Have car?(Y/N) : ");
         return Console.ReadLine();
     }
-    static string InputNumCar()
+    public static string InputNumCar()
     {
         Console.Write("Number Car : ");
         return Console.ReadLine();
