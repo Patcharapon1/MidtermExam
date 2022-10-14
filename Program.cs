@@ -253,7 +253,7 @@ class Program
 
     public static string InputNameTitle()
     {
-        Console.Write("Name Title : 1.Mr. 2.Mrs. 3.Miss : ");
+        Console.Write("Name Title : 1.Mr. 2.Mrs. 3.Miss : select number : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
             return "Mr.";
@@ -289,7 +289,7 @@ class Program
     }
     public static string InputReligion()
     {
-        Console.Write("Religion : 1.Buddhism 2.Christianity 3.Islam 4.Other : ");
+        Console.Write("Religion : 1.Buddhism 2.Christianity 3.Islam 4.Other : select number : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
             return "Buddhism";
@@ -302,7 +302,7 @@ class Program
     }
     public static string InputGrade()
     {
-        Console.Write("Grade : 1.M.4 2.M.5 3.M.6 : ");
+        Console.Write("Grade : 1.M.4 2.M.5 3.M.6 : select number : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
             return "M.4";
@@ -319,7 +319,7 @@ class Program
     public static string InputRole()
     {
 
-        Console.Write("Role : 1.Dean 2.Head of department 3.Full-time teacher : ");
+        Console.Write("Role : 1.Dean 2.Head of department 3.Full-time teacher : select number : ");
         int select = int.Parse(Console.ReadLine());
         if (select == 1)
             return "Dean";
