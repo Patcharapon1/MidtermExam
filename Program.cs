@@ -146,10 +146,18 @@ class Program
     public static void ShowLogin()
     {
         Console.Clear();
-        UserPass userpass = new UserPass(InputEmail(),InputPassword());
-
-        PrintListMenuLogin();
-        InputMenuLoginFromKeyboard();
+        Console.WriteLine("Write < exit > for out");
+        string email = InputEmail();
+        if (email ==  "exit")
+        {
+            PrintMenu();
+        }
+        else
+        {
+            UserPass userpass = new UserPass(email,InputPassword());
+            PrintListMenuLogin();
+            InputMenuLoginFromKeyboard();
+        }
 
     }
 
